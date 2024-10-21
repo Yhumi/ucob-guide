@@ -5,4 +5,194 @@ nav_order: 2
 show_toc: false
 ---
 
-Twintania
+import { Image } from 'astro:assets'
+import Notification from '@/components/mdx/Notification.astro'
+import Button from '@/components/mdx/Button.astro'
+import BuffDebuff from '@/components/mdx/BuffDebuff.astro'
+import Card from '@/components/mdx/Card.astro'
+import NASpecific from '@/components/mdx/NASpecific.astro'
+import { YouTube } from 'astro-embed'
+import ImageWrapper from '@/components/mdx/ImageWrapper.astro'
+import ImageWrapperSquare from '@/components/mdx/ImageWrapperSquare.astro'
+
+import neurolinkpuddle from '../assets/images/neurolink-puddle.png'
+import twister from '../assets/images/twister.png'
+import fireball from '../assets/images/fireball.png'
+import hatchresolve from '../assets/images/hatch-resolve-side.png'
+import hatchmarker from '../assets/images/hatch-and-marker.png'
+
+import slashing from '../assets/icons/slashing.png'
+import damagedown from '../assets/icons/damagedown.png'
+import neurolink from '../assets/icons/neurolink.png'
+import burns from '../assets/icons/burns.png'
+import manahyper from '../assets/icons/manahyper.png'
+
+{/*
+
+## TODO
+- Update LB Gen footnote to section specifically for fireball stack maybe
+- Proofread
+
+*/}
+
+<Notification title="NA strat tl;dr">
+    Neurolink placement - Normal triangle: N, SW, SE (CCW, on 123 markers)  
+    Both tanks and 1 healer (discuss) stay out of first stack for LB cheese  
+    Phys. range always baits liquid hells, caster intercepts hatch if phys. range is first hatch
+</Notification>
+
+## Overview
+[Overall Raidplan](https://raidplan.io/plan/9WEG4AEGVdru3hyF)  
+Twintania has 3 separate mini-phases, governed by HP thresholds,
+which dictate the mechanic loop that Twintania executes. These HP
+thresholds are:  
+<Button class="btn btn-primary-light" href="#h-hp-threshold-1-100-75">100%-75%</Button>
+<Button class="btn btn-secondary-light" href="#h-hp-threshold-2-749-45">74.9%-45%</Button>
+<Button class="btn btn-highlighter" href="#hp-threshold-3-449-01">44.9%-0.1%</Button>  
+
+<ImageWrapperSquare img={neurolinkpuddle} alt="Neurolink puddle" classdiv="mt-8"/>
+**Neurolink** - Small puddle that is dropped under the center of Twintania's hitbox
+upon hitting a HP threshold  
+When a player steps into the Neurolink, the player gets
+a <BuffDebuff name="Neurolink" img={neurolink} /> debuff, which reduces damage done by approximately 90% and
+healing done by approximately 10%. This debuff will be required to resolve the **Generate** mechanic
+explained later in this page.  
+
+<NASpecific>
+The Neurolink puddles will need to be spread out for the resolution of mechanics in this phase and future phases.
+NA drops these puddles in a counter-clockwise order, starting from North to Southwest to Southeast. If you're using
+the recommended markers, it is on the 1, 2, and 3 markers, in order.
+</NASpecific>
+
+
+## Timeline Breakdown
+### HP Threshold 1 (100%-75%)
+<Card title="Mechanic Loop">
+    - Plummet  
+    - Twister  
+    - Fireball  
+    - Death Sentence
+    - Plummet
+    - Twister
+    - Fireball
+</Card>
+
+- **Plummet** - Conal physical mini-tankbuster aimed at the player that is highest in aggro, no cast time  
+
+
+<ImageWrapperSquare img={twister} alt="Twister" classdiv="mt-8"/>
+
+- **Twister** - Drops small tornadoes (Twisters) under 4 players near the end of the cast  
+If a player touches a Twister, it will immediately kill the player who touched the Twister. Additionally,
+any players within the vicinity of the Twister will take lethal damage and be knocked back into the wall.
+Dodge Twisters by moving away from your initial position at about 75% of the cast till the cast ends (Latency
+dependent).
+
+
+<ImageWrapperSquare img={fireball} alt="Fireball marker" classdiv="mt-8"/>
+
+- **Fireball** - Targeted party stack on marked player  
+It is common to 5 stack the Fireball in the opener with 4 DPS and 1 healer to generate LB for a future phase. 
+Both tanks and 1 healer (discuss with your party) will stay out of this initial stack. Subsequent Fireball stacks
+should be stacked with as many people as possible.[^1]
+  
+- **Death Sentence** - Tankbuster (Forced tankswap) which inflicts 
+a <BuffDebuff name="Slashing Resistance Down II" img={slashing} /> on the target  
+Forced swap as Twintania's autos are slashing type. If the player that currently has 
+the <BuffDebuff name="Slashing Resistance Down II" img={slashing} /> takes an auto, they will take lethal
+damage.  
+
+Most parties will usually hit the next HP threshold after the Death Sentence or 2nd Plummet in the loop.
+
+### HP Threshold 2 (74.9%-45%)
+<Card title="Mechanic Loop">
+    - Liquid Hells  
+    - Generate  
+    - Liquid Hells  
+    - Death Sentence 
+    - Generate  
+    - Twister
+    - Plummet
+</Card>
+
+- **Liquid Hells** - A set of 5x puddles, baited sequentially on the targeted player  
+Each puddle is a moderately-sized circle which applies <BuffDebuff name="Burns" img={burns} />, a lethal DoT,
+to any players who stand in the puddle for too long.  
+The targeted player is any single player between the radius of about 10-25 yalms. If there are multiple valid
+targets, a random player within the valid radius is chosen as the target for a single Liquid Hell.
+
+<ImageWrapper img={hatchmarker} alt="The Hatch and its respective marker" classdiv="mt-8"/>
+
+- **Generate** - Marks 1-3 players for an orb that follows the location of the player till the orb is intercepted  
+An orb is also referred to as a **Hatch**. *In this phase*, only DPS players can get marked for a Hatch.
+The number of players marked is determined by the number of Neurolinks that are currently on the arena.  
+When an orb is intercepted, the orb will explode and deal lethal damage to players in the immediate vicinity who
+do not have the <BuffDebuff name="Neurolink" img={neurolink} /> debuff, attained from standing in a Neurolink.
+The people in the vicinity of the explosion who survive will 
+get <BuffDebuff name="Mana Hypersensitivity" img={manahyper} /> for 16 seconds, making any Hatch-related damage
+lethal during the duration of the debuff with or without the <BuffDebuff name="Neurolink" img={neurolink} /> debuff.   
+If the person who intercepted the orb dies, usually when they do not have
+the <BuffDebuff name="Neurolink" img={neurolink} />, the orb will further explode, dealing
+lethal raidwide damage and applying <BuffDebuff name="Damage Down" img={damagedown} /> to any surviving players.
+The same result will occur when nobody intercepts the orb when 10 seconds have passed since the end of the
+Generate cast.  
+  
+The second set of Liquid Hells in this mechanic loop will happen ***during*** the resolution of the Hatch. 
+Likewise, the Twister in this set will happen during the resolution of the Hatch. See
+[the section on hatches](#hatches) for more info.
+
+
+### HP Threshold 3 (44.9%-0.1%)
+<Card title="Mechanic Loop">
+    - Liquid Hells  
+    - Generate  
+    - Liquid Hells (random) + Fireball  
+    - Death Sentence  
+    - Plummet  
+    - Generate  
+    - Twister  
+    - Plummet  
+</Card>
+
+- **Liquid Hells (random)** - Same as Liquid Hells, but instead of a random target within a preset range, it is
+a random single target for all 5 puddles.  
+  
+  
+## Role Breakdown and Tips
+### Tank
+Take care to face the plummet away from the party or even rogue players that may be standing in the cleaved area.
+#### Positioning and Uptime 
+Tanks can do a lot to make the melee DPS' life a lot easier such as:
+- Standing where the other tank is standing when provoking from them, keeping the boss facing the same way
+- Positioning Twintania closer to the Neurolinks temporarily.
+[HP Threshold 2 example](https://www.twitch.tv/videos/2149285444?t=0h0m38s) &
+[HP Threshold 3 example](https://www.twitch.tv/videos/2149278406?t=0h1m28s)
+  
+
+### Healer
+Some people may not stack for Fireball stacks, so be prepared to throw out a shield or mitigation.
+  
+
+### DPS
+#### Hatches
+<ImageWrapperSquare img={hatchresolve} alt="Hatch resolution from the side" />
+Since the <BuffDebuff name="Neurolink" img={neurolink} /> debuff reduces damage done by the player,
+minimizing the amount of time spent in the Neurolink to resolve Hatches is ideal. However, due to the way
+snapshots and latency work, it is recommended to **walk into the Neurolink from the side** instead of walking
+into the Neurolink directly towards the Hatch in this phase.
+
+<NASpecific>
+    For the Generate + Liquid Hell combo, if the Liquid Hell baiter (**physical ranged**) gets marked for a Hatch,
+    it is common to have someone else (**caster**) intercept the Hatch for the baiter.  
+    In conjunction with baiting Liquid Hells, positioning for this correctly without causing a death or wipe can be 
+    tricky. Use [this raidplan](https://raidplan.io/plan/19yavfslOUU0l1Gp) or check out this useful video that will
+    help you prepare for this!
+    <YouTube id="9DDTla_pbL0" />
+</NASpecific>
+
+For the Generate + Twister combo, Twister will usually go off before the orb reaches you. Make sure you drop
+the twister outside of the Neurolink to ensure your end position is safe.
+
+&nbsp;
+
+[^1]: If discussed with the party, subsequent stacks can be [cheesed for LB](https://ucob.guide/general/lbgen/) too.
