@@ -1,0 +1,18 @@
+.imagewrapper-main {
+  @apply grid max-w-full place-content-center;
+
+  .imagewrapper-inner {
+    @apply grid place-content-center;
+    @apply bg-white border border-black rounded-sm antialiased;
+    @apply dark:bg-zinc-900 dark:border-neutral-500;
+    @apply p-7 pb-3 m-2;
+
+    .imagewrapper-image {
+      @apply rounded-sm max-h-96 object-cover;
+    }
+  }
+}
+
+.imagewrapper-square {
+  @apply w-96 aspect-square;
+}

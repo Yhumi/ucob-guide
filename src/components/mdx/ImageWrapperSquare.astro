@@ -1,5 +1,6 @@
 ---
 import ImageWrapper from './ImageWrapper.astro';
+import clsx from 'clsx';
 
 const props = Astro.props;
 
@@ -11,4 +12,4 @@ interface Props {
 }
 ---
 
-<ImageWrapper img={props.img} alt={props.alt} classdiv={props.classdiv} classimg={["w-96", "max-w-100", "aspect-square", props.classimg]}/>
+<ImageWrapper img={props.img} alt={props.alt} classdiv={props.classdiv} classimg={clsx("imagewrapper-square", props.classimg)}/>

@@ -1,0 +1,28 @@
+.extradetails {
+  @apply my-2 bg-slate-700;
+  .extradetails-summary {
+    @apply hover:cursor-pointer;
+    @apply outline outline-1 outline-neutral-500 rounded-sm;
+    @apply block;
+  }
+
+  p {
+    @apply mx-2 pb-2 mb-0;
+  }
+  .extradetails-summary::before {
+    @apply py-1 ml-2 inline-block;
+    content: "▲";
+    transition: 0.2s;
+    transform: rotate(90deg);
+  }
+}
+.extradetails[open] {
+  @apply outline outline-1 outline-neutral-500 rounded-sm;
+  .extradetails-summary {
+    @apply outline-none;
+  }
+  .extradetails-summary::before {
+    transform: rotate(180deg);
+    transform-origin: 40% 55%;
+  }
+}

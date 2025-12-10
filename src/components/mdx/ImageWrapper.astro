@@ -1,5 +1,6 @@
 ---
 import { Image } from 'astro:assets';
+import clsx from 'clsx';
 
 const props = Astro.props;
 
@@ -7,13 +8,14 @@ interface Props {
   img: ImageMetadata;
   alt?: string;
   classdiv?: string;
-  classimg?: string[];
+  classimg?: string;
 }
+
 ---
 
-<div class:list={["grid", "max-w-full", "place-content-center", props.classdiv]}>
-    <div class="grid place-content-center p-7 pb-3 m-2 dark:bg-zinc-900 bg-white border border-black dark:border-neutral-500">
-        <Image src={props.img} alt={props.alt} class:list={["rounded-md", "max-h-96", "object-cover", props.classimg]}/>
+<div class={clsx("imagewrapper-main", props.classdiv)}>
+    <div class="imagewrapper-inner">
+        <Image class={clsx("imagewrapper-image", props.classimg)} src={props.img} alt={props.alt}/>
         <span class="text-center">
             {props.alt}
         </span>

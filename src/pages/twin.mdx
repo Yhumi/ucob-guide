@@ -14,6 +14,7 @@ import NASpecific from '@/components/mdx/NASpecific.astro'
 import { YouTube } from 'astro-embed'
 import ImageWrapper from '@/components/mdx/ImageWrapper.astro'
 import ImageWrapperSquare from '@/components/mdx/ImageWrapperSquare.astro'
+import ExtraDetails from '@/components/mdx/ExtraDetails.astro'
 
 {/* Images */}
 import neurolinkpuddle from '../assets/images/neurolink-puddle.png'
@@ -137,29 +138,29 @@ the valid radius is chosen as the target for a single Liquid Hell.
 
 <ImageWrapper img={hatchmarker} alt="The Hatch and its respective marker" classdiv="mt-8"/>
 
-- **Generate** - Marks 1-3 players for an orb that follows the location of the
+- **Generate** - Marks 1-3 players for an orb (Hatch) that follows the location of the
   player till the orb is intercepted  
-An orb is also referred to as a **Hatch**. *In this phase*, only DPS players can
-get marked for a Hatch. The number of players marked is determined by the number
-of Neurolinks that are currently on the arena.  
-When an orb is intercepted, the orb will explode and deal lethal damage to
-players in the immediate vicinity who do not have the <Status name="Neurolink" img={neurolink} />
-debuff, attained from standing in a Neurolink. The people in the vicinity of the
-explosion who survive will get <Status name="Mana Hypersensitivity" img={manahyper} />
-for 16 seconds, making any Hatch-related damage lethal during the duration of
-the debuff with or without the <Status name="Neurolink" img={neurolink} />
-debuff.   
-If the person who intercepted the orb dies, usually when they do not have the
-<Status name="Neurolink" img={neurolink} />, the orb will further explode,
-dealing lethal raidwide damage and applying <Status name="Damage Down"
-img={damagedown} /> to any surviving players. The same result will occur when
-nobody intercepts the orb when 10 seconds have passed since the end of the
-Generate cast.  
-  
-The second set of Liquid Hells in this mechanic loop will happen ***during***
-the resolution of the Hatch. Likewise, the Twister in this set will happen
-during the resolution of the Hatch. See [the section on hatches](#hatches) for
-more info.
+  *In this phase*, only DPS players can
+  get marked for a Hatch. The number of players marked is determined by the number
+  of Neurolinks that are currently on the arena.  
+  <ExtraDetails summary="Hatches need to be intercepted by a player within a Neurolink puddle.">
+      When an orb is intercepted, the orb will explode and deal lethal damage to
+      players in the immediate vicinity who do not have the <Status name="Neurolink" img={neurolink} />
+      debuff, attained from standing in a Neurolink. The people in the vicinity of the
+      explosion who survive will get <Status name="Mana Hypersensitivity" img={manahyper} />
+      for 16 seconds which makes any Hatches lethal during its duration even with the
+      <Status name="Neurolink" img={neurolink} /> debuff.   
+      If the person who intercepted the orb dies, usually when they do not have the
+      <Status name="Neurolink" img={neurolink} />, the orb will further explode,
+      dealing lethal raidwide damage and applying <Status name="Damage Down"
+      img={damagedown} /> to any surviving players. The same result will occur when
+      nobody intercepts the orb when 10 seconds have passed since the end of the
+      Generate cast.  
+  </ExtraDetails>
+  The second set of Liquid Hells in this mechanic loop will happen ***during***
+  the resolution of the Hatch. Likewise, the Twister in this set will happen
+  during the resolution of the Hatch. See [the section on hatches](#hatches) for
+  more info.
 
 
 ### HP Threshold 3 (44.9%-0.1%)
